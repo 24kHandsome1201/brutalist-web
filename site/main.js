@@ -30,7 +30,17 @@ const clearInvalid = (el) => {
   el.removeAttribute('aria-describedby');
   el.closest('.field').classList.remove('is-invalid');
 };
-form.addEventListener('input', (e) => { if (e.target.checkValidity()) clearInvalid(e.target); });
+const labelOf = (el) => el.labels[0].textContent.split(' / ')[0] + (el.validity.patternMismatch ? '（四位年份 / 4 DIGITS）' : '');
+const reportInvalid = (invalid) => {
+  statusEl.textContent = invalid.length
+    ? `✕ ${invalid.length} 项需要检查：${invalid.map(labelOf).join('、')}`
+    : 'STATUS — 等待输入 / AWAITING INPUT';
+};
+form.addEventListener('input', (e) => {
+  if (!e.target.closest('.field') || !e.target.checkValidity()) return;
+  clearInvalid(e.target);
+  if (statusEl.textContent.startsWith('✕')) reportInvalid([...form.querySelectorAll('.is-invalid input, .is-invalid textarea')]);
+});
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const fields = [...form.querySelectorAll('.field input, .field textarea')];
@@ -42,7 +52,7 @@ form.addEventListener('submit', (e) => {
       el.setAttribute('aria-describedby', 'form-status');
       el.closest('.field').classList.add('is-invalid');
     }
-    statusEl.textContent = `✕ ${invalid.length} 项需要检查：${invalid.map((el) => el.labels[0].textContent.split(' / ')[0]).join('、')}`;
+    reportInvalid(invalid);
     invalid[0].focus();
     return;
   }

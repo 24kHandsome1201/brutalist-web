@@ -33,7 +33,7 @@ a{color:inherit}
 /* hero */
 .hero{position:relative;padding:var(--pad);border-bottom:var(--b) solid var(--ink);overflow:hidden}
 .hero__kicker{margin:0 0 8px}
-.hero__title{font:900 clamp(4.5rem,23vw,24rem)/.8 var(--font-display);letter-spacing:-.05em;margin:0 0 0 -.04em;text-transform:uppercase}
+.hero__title{font:900 clamp(3.5rem,25vw,24rem)/.8 var(--font-display);letter-spacing:-.05em;margin:0 0 0 -.04em;text-transform:uppercase}
 .hero__meta{display:grid;grid-template-columns:2fr 1fr auto;border:var(--b) solid var(--ink);margin-top:24px;background:var(--paper)}
 .hero__lede{margin:0;padding:20px;font-size:clamp(1.15rem,2.2vw,1.7rem);line-height:1.3;font-weight:700;border-right:var(--b) solid var(--ink)}
 .nw{white-space:nowrap}
@@ -113,13 +113,13 @@ main:focus{outline:none}
 .tag--lost{background:var(--accent);color:var(--ink);border-color:var(--ink)}
 
 /* form */
-.form{display:grid;grid-template-columns:repeat(3,1fr)}
+.form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 .field{display:grid;border-right:var(--b) solid var(--ink);border-bottom:var(--b) solid var(--ink)}
 .field:nth-child(3){border-right:0}
 .field--wide{grid-column:1/-1;border-right:0}
 .field label{padding:10px var(--pad) 0;font-weight:700}
-.field input,.field textarea{font:700 1.3rem/1.3 var(--font-body);border:0;background:transparent;padding:6px var(--pad) 16px;color:var(--ink);resize:none}
-.field input::placeholder,.field textarea::placeholder{color:var(--ink);opacity:.7}
+.field input,.field textarea{font:700 1.3rem/1.3 var(--font-body);border:0;background:transparent;padding:6px var(--pad) 16px;color:var(--ink);resize:none;min-width:0;width:100%;box-sizing:border-box}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink);opacity:.55;font:400 12.5px/1.3 var(--font-mono);letter-spacing:.06em}
 .field input:focus,.field textarea:focus{outline:none}
 .field:focus-within{background:var(--slab);outline:var(--b) solid var(--accent);outline-offset:-6px}
 .field.is-invalid{background:var(--ink);color:var(--paper);border-right-color:var(--paper)}
@@ -140,7 +140,7 @@ main > .section:last-child{border-bottom:0}
 .footer__cols p{margin:0;padding:18px var(--pad);border-right:var(--b) solid var(--paper);line-height:1.7}
 .footer__cols p:last-child{border-right:0}
 
-@media (min-width:1025px){.hero__title{font-size:clamp(4.5rem,26.5vw,26rem)}}
+@media (min-width:1025px){.hero__title{font-size:clamp(4.5rem,26.2vw,32rem)}}
 @media (max-width:1024px){
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
