@@ -38,7 +38,7 @@ a{color:inherit}
 .nw{white-space:nowrap}
 .hero__lede em{font-style:normal;white-space:nowrap;background:var(--ink);color:var(--paper);padding:0 .2em}
 .hero__coords{margin:0;display:grid}
-.hero__coords div{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:var(--b) solid var(--ink)}
+.hero__coords div{display:flex;justify-content:space-between;gap:0 8px;padding:10px 16px;border-bottom:var(--b) solid var(--ink)}
 .hero__coords div:last-child{border-bottom:0}
 .hero__coords dt{font-weight:700}
 .hero__coords dd{margin:0;white-space:nowrap}
@@ -194,6 +194,8 @@ main > .section:last-child{border-bottom:0}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .marquee__track{animation:none}
-  .marquee__toggle{display:none}
   .card__link{transition:none}
 }
+
+@media (hover:none){.hover-copy{display:none}}
+@media (hover:hover){.touch-copy{display:none}}
