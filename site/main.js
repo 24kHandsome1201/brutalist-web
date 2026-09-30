@@ -30,7 +30,7 @@ const clearInvalid = (el) => {
   el.removeAttribute('aria-describedby');
   el.closest('.field').classList.remove('is-invalid');
 };
-const labelOf = (el) => el.labels[0].textContent.split(' / ')[0] + (el.validity.patternMismatch ? '（四位年份 / 4 DIGITS）' : '');
+const labelOf = (el) => el.labels[0].textContent.split(' / ')[0] + (el.validity.patternMismatch ? '（4 DIGITS）' : '');
 const reportInvalid = (invalid) => {
   statusEl.textContent = invalid.length
     ? `✕ ${invalid.length} 项需要检查：${invalid.map(labelOf).join('、')}`

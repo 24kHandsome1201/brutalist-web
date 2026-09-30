@@ -12,7 +12,6 @@
 }
 *,*::before,*::after{box-sizing:border-box;border-radius:0}
 html{scroll-behavior:auto;scroll-padding-top:var(--topbar-h,60px)}
-section[id],tr[id]{scroll-margin-top:var(--topbar-h,60px)}
 ::selection{background:var(--accent);color:var(--ink)}
 body{margin:0;font-synthesis:none;background:var(--paper);color:var(--ink);font:400 17px/1.5 var(--font-body);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='1' cy='1' r='.6' fill='%230a0a0a' fill-opacity='.12'/%3E%3C/svg%3E");background-size:6px 6px}
@@ -68,7 +67,7 @@ main:focus{outline:none}
 
 /* cards */
 .cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--b);background:var(--ink)}
-.card__link{display:block;height:100%;text-decoration:none;padding:18px;transition:background-color 80ms steps(1,end),color 80ms steps(1,end);background:var(--paper)}
+.card__link{display:block;height:100%;text-decoration:none;padding:18px;background:var(--paper)}
 .card__img{display:block;width:100%;height:auto;border:var(--b) solid var(--ink);filter:grayscale(1) contrast(1.2)}
 .card__body{padding-top:14px}
 .card__code{margin:0;display:inline-block;background:var(--ink);color:var(--paper);padding:2px 6px}
@@ -119,7 +118,7 @@ main:focus{outline:none}
 .field--wide{grid-column:1/-1;border-right:0}
 .field label{padding:10px var(--pad) 0;font-weight:700}
 .field input,.field textarea{font:700 1.3rem/1.3 var(--font-body);border:0;background:transparent;padding:6px var(--pad) 16px;color:var(--ink);resize:none;min-width:0;width:100%;box-sizing:border-box}
-.field input::placeholder,.field textarea::placeholder{color:var(--ink);opacity:.55;font:400 12.5px/1.3 var(--font-mono);letter-spacing:.06em}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink);opacity:.7;font:400 12.5px/1.3 var(--font-mono);letter-spacing:.06em}
 .field input:focus,.field textarea:focus{outline:none}
 .field:focus-within{background:var(--slab);outline:var(--b) solid var(--accent);outline-offset:-6px}
 .field.is-invalid{background:var(--ink);color:var(--paper);border-right-color:var(--paper)}
@@ -185,7 +184,9 @@ main > .section:last-child{border-bottom:0}
   .card h3{font-size:1.15rem}
   .card__code{font-size:10.5px;letter-spacing:.04em}
 }
+@media (min-width:769px) and (max-width:1100px){.field.is-invalid label::after{content:" — 必填"}}
 @media (max-width:380px){
+  .nw{white-space:normal}
   .stamp{transform:rotate(-5deg);box-shadow:5px 5px 0 var(--ink);padding:8px 10px}
   .stamp span:first-child{font-size:1.7rem}
   .stamp .mono{font-size:9px}
