@@ -16,7 +16,7 @@ const observer = new IntersectionObserver((entries) => {
 navLinks.forEach((a) => observer.observe(document.querySelector(a.getAttribute('href'))));
 
 const form = document.getElementById('submit-form');
-const status = form.querySelector('.form__status');
+const statusEl = form.querySelector('.form__status');
 const clearInvalid = (el) => {
   el.removeAttribute('aria-invalid');
   el.removeAttribute('aria-describedby');
@@ -25,7 +25,7 @@ const clearInvalid = (el) => {
 form.addEventListener('input', (e) => { if (e.target.checkValidity()) clearInvalid(e.target); });
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const fields = [...form.elements].filter((el) => el.willValidate);
+  const fields = [...form.querySelectorAll('.field input, .field textarea')];
   fields.forEach(clearInvalid);
   const invalid = fields.filter((el) => !el.checkValidity());
   if (invalid.length) {
@@ -34,11 +34,11 @@ form.addEventListener('submit', (e) => {
       el.setAttribute('aria-describedby', 'form-status');
       el.closest('.field').classList.add('is-invalid');
     }
-    status.textContent = `✕ ${invalid.length} 项需要检查：${invalid.map((el) => el.labels[0].textContent.split(' / ')[0]).join('、')}`;
+    statusEl.textContent = `✕ ${invalid.length} 项需要检查：${invalid.map((el) => el.labels[0].textContent.split(' / ')[0]).join('、')}`;
     invalid[0].focus();
     return;
   }
   const code = `BTN-${form.year.value}-${form.city.value.replace(/[^a-z]/gi, '').slice(0, 3).toUpperCase() || 'XXX'}`;
-  status.textContent = `✓ 已收录 ${code} — 等待编辑审核`;
+  statusEl.textContent = `✓ 已收录 ${code} — 等待编辑审核`;
   form.reset();
 });
