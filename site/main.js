@@ -8,12 +8,20 @@ const observer = new IntersectionObserver((entries) => {
   for (const entry of entries) {
     if (!entry.isIntersecting) continue;
     for (const a of navLinks) {
-      if (a.getAttribute('href') === `#${entry.target.id}`) a.setAttribute('aria-current', 'true');
+      if (a.getAttribute('href') === `#${entry.target.id}`) a.setAttribute('aria-current', 'location');
       else a.removeAttribute('aria-current');
     }
   }
 }, { rootMargin: '-45% 0px -50% 0px' });
 navLinks.forEach((a) => observer.observe(document.querySelector(a.getAttribute('href'))));
+
+const marquee = document.querySelector('.marquee');
+const marqueeToggle = marquee.querySelector('.marquee__toggle');
+marqueeToggle.addEventListener('click', () => {
+  const paused = marquee.classList.toggle('is-paused');
+  marqueeToggle.setAttribute('aria-pressed', String(paused));
+  marqueeToggle.textContent = paused ? '▶ PLAY' : '❚❚ PAUSE';
+});
 
 const form = document.getElementById('submit-form');
 const statusEl = form.querySelector('.form__status');
